@@ -48,4 +48,4 @@ migrate-action:
 		"$(action)"
 
 auth-service-run:
-	@go run ./cmd/auth/main.go
+	@go run ./cmd/auth-service/main.go
