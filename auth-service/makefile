@@ -5,10 +5,11 @@ export PROJECT_ROOT = ${shell pwd}
 
 env-up:
 	@docker compose up -d auth-postgres
-# 	TODO
+# 	ToDo
 
 env-down:
 	@docker compose down auth-postgres
+# 	ToDo
 
 env-cleanup:
 	@read -p "Are you sure you want to remove the database volume? This action is irreversible. [y/n]: " confirm; \
