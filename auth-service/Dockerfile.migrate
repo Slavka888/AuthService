@@ -1,0 +1,11 @@
+FROM golang:1.26-alpine AS builder
+
+RUN CGO_ENABLED=0 go install \
+    -tags 'sqlite file' \
+    github.com/golang-migrate/migrate/v4/cmd/migrate@v4.20.1
+
+FROM alpine:3.24
+
+COPY --from=builder /go/bin/migrate /usr/local/bin/migrate
+
+ENTRYPOINT ["/usr/local/bin/migrate"]
