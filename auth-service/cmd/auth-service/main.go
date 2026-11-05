@@ -46,11 +46,6 @@ func main() {
 		log.Error("failed to stop application", "error", err)
 	}
 
-	err = application.Stop()
-	if err != nil {
-		log.Error("failed to stop application", "error", err)
-	}
-
 	log.Info(
 		"application stopped",
 	)

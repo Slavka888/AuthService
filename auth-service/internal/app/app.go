@@ -20,7 +20,7 @@ func NewApp(
 	storagePath string,
 	tokenTTL time.Duration,
 ) (*App, error) {
-	storage, err := sqlite.New(storagePath)
+	storage, err := sqlite.New(storagePath, log)
 	if err != nil {
 		return nil, fmt.Errorf("failed to initialize storage: %w", err)
 	}

@@ -7,6 +7,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"log/slog"
 	"os"
 	"path/filepath"
 
@@ -16,10 +17,11 @@ import (
 )
 
 type Storage struct {
-	Db *sql.DB
+	Db  *sql.DB
+	log *slog.Logger
 }
 
-func New(storagePath string) (*Storage, error) {
+func New(storagePath string, log *slog.Logger) (*Storage, error) {
 	const op = "storage.sqlite.New"
 
 	if err := os.MkdirAll(filepath.Dir(storagePath), os.ModePerm); err != nil {
@@ -35,10 +37,11 @@ func New(storagePath string) (*Storage, error) {
 		return nil, fmt.Errorf("%s: %w", op, err)
 	}
 
-	return &Storage{Db: db}, nil
+	return &Storage{Db: db, log: log}, nil
 }
 
 func (s *Storage) Close() error {
+	s.log.Info("Closing SQLite storage")
 	return s.Db.Close()
 }
 

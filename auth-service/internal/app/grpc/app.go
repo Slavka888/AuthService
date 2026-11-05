@@ -43,7 +43,7 @@ func (a *App) Run() error {
 		return fmt.Errorf("grpcapp.Run: %w", err)
 	}
 
-	log.Info("gRPC server is running", slog.Int("port", a.port))
+	log.Info("gRPC server is running")
 
 	if err := a.gRPCServer.Serve(listener); err != nil {
 		return fmt.Errorf("grpcapp.Run: %w", err)
@@ -63,7 +63,7 @@ func (a *App) Stop() {
 		slog.String("operation", "grpcapp.Stop"),
 		slog.Int("port", a.port),
 	)
-	log.Info("Stopping gRPC server", slog.Int("port", a.port))
+	log.Info("Stopping gRPC server")
 
 	a.gRPCServer.GracefulStop()
 }
