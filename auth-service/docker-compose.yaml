@@ -4,5 +4,5 @@ services:
       context: .
       dockerfile: Dockerfile.migrate
     volumes:
-      - ${PROJECT_ROOT}/migrations:/migrations
-      - ${PROJECT_ROOT}/storage:/storage
+      - ./migrations:/migrations
+      - ./storage:/storage

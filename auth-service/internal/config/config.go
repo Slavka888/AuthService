@@ -42,3 +42,26 @@ func MustLoad() *Config {
 
 	return &cfg
 }
+
+func MustLoadTest() *Config {
+	var path string
+
+	flag.StringVar(&path, "configTest", "../config/local_test.yaml", "path to configTest file")
+	flag.Parse()
+
+	if path == "" {
+		panic("config path is empty")
+	}
+
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		panic("config file does not exists: " + path)
+	}
+
+	var cfg Config
+
+	if err := cleanenv.ReadConfig(path, &cfg); err != nil {
+		panic("failed to read config: " + err.Error())
+	}
+
+	return &cfg
+}

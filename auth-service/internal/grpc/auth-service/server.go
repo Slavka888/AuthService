@@ -10,7 +10,7 @@ import (
 )
 
 type Auth interface {
-	Login(ctx context.Context, email, password string, appID int) (Token string, err error)
+	Login(ctx context.Context, email, password string, appID int) (token string, err error)
 	IsAdmin(ctx context.Context, userID int64) (bool, error)
 	Register(ctx context.Context, email, password string) (userID int64, err error)
 }
